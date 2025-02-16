@@ -1,6 +1,8 @@
 package service
 
 import (
+	"time"
+
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -17,12 +19,12 @@ type Storage interface {
 }
 
 type Task struct {
-	ID          int    `json:"id" postgres:"id"`
-	Title       string `json:"title" postgres:"title"`
-	Description string `json:"description" postgres:"description"`
-	Status      string `json:"status" postgres:"status"`
-	CreateAt    string `json:"createAt" postgres:"createAt"`
-	UpdateAt    string `json:"updateAt" postgres:"updateAt"`
+	ID          int        `json:"id"`
+	Title       *string    `json:"title"`
+	Description *string    `json:"description"`
+	Status      *string    `json:"status"`
+	CreatedAt   *time.Time `json:"createAt"`
+	UpdatedAt   *time.Time `json:"updateAt"`
 }
 
 func New(stor Storage) *TodoService {

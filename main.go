@@ -6,8 +6,10 @@ import (
 )
 
 func main() {
-	bd := postgres.New()
-
-	service := service.New(bd)
+	storage := postgres.New()
+	if storage == nil {
+		panic("failed to initialize database")
+	}
+	service := service.New(storage)
 	service.Start()
 }
